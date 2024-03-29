@@ -877,7 +877,7 @@ public:
         : flag_formatter(padinfo) {}
 
     void format(const details::log_msg &, const std::tm &, memory_buf_t &dest) override {
-        auto mdc_map = mdc::get_context();
+        auto &mdc_map = mdc::get_context();
         if (mdc_map.empty()) {
             ScopedPadder p(0, padinfo_, dest);
             return;
