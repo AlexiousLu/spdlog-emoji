@@ -3,12 +3,11 @@
 
 #pragma once
 
-#include <spdlog/common.h>
 #include <map>
 
 namespace spdlog {
 
-class SPDLOG_API mdc {
+class mdc {
 public:
     static void put(const std::string &key, const std::string &value) {
         get_context()[key] = value;
