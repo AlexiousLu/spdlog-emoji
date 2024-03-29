@@ -3,8 +3,10 @@
 #include <map>
 #include <string>
 
+#include <spdlog/common.h>
+
 namespace spdlog {
-    class mdc {
+    class SPDLOG_API mdc {
     public:
         using mdc_map_t = std::map<std::string, std::string>;
 
