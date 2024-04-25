@@ -95,3 +95,4 @@ cmake-build-*/
 *.xcodeproj/
 /.vs
 /out/build
+/CMakeSettings.json
