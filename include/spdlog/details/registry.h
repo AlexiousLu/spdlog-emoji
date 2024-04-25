@@ -50,8 +50,9 @@ public:
     // another.
     logger *get_default_raw();
 
-    // set default logger.
+    // set default logger and add it to the registry if not registered already.
     // default logger is stored in default_logger_ (for faster retrieval) and in the loggers_ map.
+    // Note: Make sure to unregister it when no longer needed or before calling again with a new logger.
     void set_default_logger(std::shared_ptr<logger> new_default_logger);
 
     void set_tp(std::shared_ptr<thread_pool> tp);
