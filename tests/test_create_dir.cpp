@@ -85,7 +85,7 @@ TEST_CASE("dir_name", "[create_dir]") {
 #ifdef _WIN32
 
 //
-// test windows cases when drive letter is given e.g. C:\\some-folder\
+// test windows cases when drive letter is given e.g. C:\\some-folder
 //
 #include <windows.h>
 #include <fileapi.h>
