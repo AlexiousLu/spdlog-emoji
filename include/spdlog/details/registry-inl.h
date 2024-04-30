@@ -84,7 +84,6 @@ SPDLOG_INLINE std::shared_ptr<logger> registry::get(const std::string &logger_na
     return found == loggers_.end() ? nullptr : found->second;
 }
 
-
 SPDLOG_INLINE std::shared_ptr<logger> registry::default_logger() {
     std::lock_guard<std::mutex> lock(logger_map_mutex_);
     return default_logger_;
@@ -99,7 +98,7 @@ SPDLOG_INLINE logger *registry::get_default_raw() { return default_logger_.get()
 // set default logger.
 // default logger is stored in default_logger_ (for faster retrieval) and in the loggers_ map.
 SPDLOG_INLINE void registry::set_default_logger(std::shared_ptr<logger> new_default_logger) {
-    std::lock_guard<std::mutex> lock(logger_map_mutex_);    
+    std::lock_guard<std::mutex> lock(logger_map_mutex_);
     if (new_default_logger != nullptr) {
         loggers_[new_default_logger->name()] = new_default_logger;
     }
