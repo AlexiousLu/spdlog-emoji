@@ -26,6 +26,7 @@ void udp_example();
 void custom_flags_example();
 void file_events_example();
 void replace_default_logger_example();
+void mdc_example();
 
 #include "spdlog/spdlog.h"
 #include "spdlog/cfg/env.h"   // support for loading levels from the environment variable
@@ -84,6 +85,7 @@ int main(int, char *[]) {
         custom_flags_example();
         file_events_example();
         replace_default_logger_example();
+        mdc_example();
 
         // Flush all *registered* loggers using a worker thread every 3 seconds.
         // note: registered loggers *must* be thread safe for this to work correctly!
@@ -375,4 +377,17 @@ void replace_default_logger_example() {
     spdlog::debug("This message should be displayed..");
 
     spdlog::set_default_logger(old_logger);
+}
+
+// Mapped Diagnostic Context (MDC) is a map that stores key-value pairs (string values) in thread local storage.
+// Each thread maintains its own MDC, which loggers use to append diagnostic information to log outputs.
+// Note: it is not supported in asynchronous mode due to its reliance on thread-local storage.
+#include "spdlog/mdc.h"
+void mdc_example()
+{
+    spdlog::mdc::put("key1", "value1");
+    spdlog::mdc::put("key2", "value2");
+    // if not using the default format, you can use the %& formatter to print mdc data as well
+    spdlog::set_pattern("[%H:%M:%S %z] [%^%L%$] [%&] %v");
+    spdlog::info("Some log message with context");
 }
