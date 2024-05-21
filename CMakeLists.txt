@@ -108,9 +108,11 @@ endif()
 if(WIN32)
     option(SPDLOG_WCHAR_SUPPORT "Support wchar api" OFF)
     option(SPDLOG_WCHAR_FILENAMES "Support wchar filenames" OFF)
+    option(SPDLOG_WCHAR_CONSOLE "Support wchar output to console" OFF)
 else()
     set(SPDLOG_WCHAR_SUPPORT OFF CACHE BOOL "non supported option" FORCE)
     set(SPDLOG_WCHAR_FILENAMES OFF CACHE BOOL "non supported option" FORCE)
+    set(SPDLOG_WCHAR_CONSOLE OFF CACHE BOOL "non supported option" FORCE)
 endif()
 
 if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
@@ -237,9 +239,11 @@ endif()
 # Misc definitions according to tweak options
 # ---------------------------------------------------------------------------------------
 set(SPDLOG_WCHAR_TO_UTF8_SUPPORT ${SPDLOG_WCHAR_SUPPORT})
+set(SPDLOG_UTF8_TO_WCHAR_CONSOLE ${SPDLOG_WCHAR_CONSOLE})
 foreach(
     SPDLOG_OPTION
     SPDLOG_WCHAR_TO_UTF8_SUPPORT
+    SPDLOG_UTF8_TO_WCHAR_CONSOLE
     SPDLOG_WCHAR_FILENAMES
     SPDLOG_NO_EXCEPTIONS
     SPDLOG_CLOCK_COARSE
