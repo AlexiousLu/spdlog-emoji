@@ -180,7 +180,7 @@ public:
 
 // Abbreviated month
 static const std::array<const char *, 12> months{
-    {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"}};
+    {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"}};
 
 template <typename ScopedPadder>
 class b_formatter final : public flag_formatter {
