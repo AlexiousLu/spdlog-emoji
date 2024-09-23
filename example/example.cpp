@@ -266,7 +266,7 @@ void multi_sink_example() {
 struct my_type {
     int i = 0;
     explicit my_type(int i)
-        : i(i){};
+        : i(i){}
 };
 
 #ifndef SPDLOG_USE_STD_FORMAT  // when using fmtlib
