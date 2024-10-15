@@ -17,6 +17,7 @@
 #include <spdlog/common.h>
 #include <spdlog/details/backtracer.h>
 #include <spdlog/details/log_msg.h>
+#include "common.h"
 
 #ifdef SPDLOG_WCHAR_TO_UTF8_SUPPORT
     #ifndef _WIN32
@@ -141,13 +142,42 @@ public:
     }
 
     template <typename... Args>
+    void timing(format_string_t<Args...> fmt, Args &&...args) {
+        log(level::timing, fmt, std::forward<Args>(args)...);
+    }
+
+    template <typename... Args>
+    void funny(format_string_t<Args...> fmt, Args &&...args) {
+        log(level::funny, fmt, std::forward<Args>(args)...);
+    }
+
+    template <typename... Args>
     void warn(format_string_t<Args...> fmt, Args &&...args) {
         log(level::warn, fmt, std::forward<Args>(args)...);
     }
 
     template <typename... Args>
+    void joker(format_string_t<Args...> fmt, Args &&...args) {
+        log(level::joker, fmt, std::forward<Args>(args)...);
+    }
+
+    template <typename... Args>
+    void ghost(format_string_t<Args...> fmt, Args &&...args) {
+        log(level::ghost, fmt, std::forward<Args>(args)...);
+    }
+
+    template <typename... Args>
+    void success(format_string_t<Args...> fmt, Args &&...args) {
+        log(level::success, fmt, std::forward<Args>(args)...);
+    }
+    template <typename... Args>
     void error(format_string_t<Args...> fmt, Args &&...args) {
         log(level::err, fmt, std::forward<Args>(args)...);
+    }
+
+    template <typename... Args>
+    void finish(format_string_t<Args...> fmt, Args &&...args) {
+        log(level::finish, fmt, std::forward<Args>(args)...);
     }
 
     template <typename... Args>
@@ -213,13 +243,43 @@ public:
     }
 
     template <typename... Args>
+    void timing(wformat_string_t<Args...> fmt, Args &&...args) {
+        log(level::timing, fmt, std::forward<Args>(args)...);
+    }
+
+    template <typename... Args>
+    void funny(wformat_string_t<Args...> fmt, Args &&...args) {
+        log(level::funny, fmt, std::forward<Args>(args)...);
+    }
+
+    template <typename... Args>
     void warn(wformat_string_t<Args...> fmt, Args &&...args) {
         log(level::warn, fmt, std::forward<Args>(args)...);
     }
 
     template <typename... Args>
+    void joker(wformat_string_t<Args...> fmt, Args &&...args) {
+        log(level::joker, fmt, std::forward<Args>(args)...);
+    }
+
+    template <typename... Args>
+    void ghost(wformat_string_t<Args...> fmt, Args &&...args) {
+        log(level::ghost, fmt, std::forward<Args>(args)...);
+    }
+
+    template <typename... Args>
+    void success(wformat_string_t<Args...> fmt, Args &&...args) {
+        log(level::success, fmt, std::forward<Args>(args)...);
+    }
+
+    template <typename... Args>
     void error(wformat_string_t<Args...> fmt, Args &&...args) {
         log(level::err, fmt, std::forward<Args>(args)...);
+    }
+
+    template <typename... Args>
+    void finish(wformat_string_t<Args...> fmt, Args &&...args) {
+        log(level::finish, fmt, std::forward<Args>(args)...);
     }
 
     template <typename... Args>
@@ -244,13 +304,43 @@ public:
     }
 
     template <typename T>
+    void timing(const T &msg) {
+        log(level::timing, msg);
+    }
+
+    template <typename T>
+    void funny(const T &msg) {
+        log(level::funny, msg);
+    }
+
+    template <typename T>
     void warn(const T &msg) {
         log(level::warn, msg);
     }
 
     template <typename T>
+    void joker(const T &msg) {
+        log(level::joker, msg);
+    }
+
+    template <typename T>
+    void ghost(const T &msg) {
+        log(level::ghost, msg);
+    }
+
+    template <typename T>
+    void success(const T &msg) {
+        log(level::success, msg);
+    }
+
+    template <typename T>
     void error(const T &msg) {
         log(level::err, msg);
+    }
+
+    template <typename T>
+    void finish(const T &msg) {
+        log(level::finish, msg);
     }
 
     template <typename T>

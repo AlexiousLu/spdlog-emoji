@@ -231,10 +231,17 @@ using level_t = std::atomic<int>;
 #define SPDLOG_LEVEL_TRACE 0
 #define SPDLOG_LEVEL_DEBUG 1
 #define SPDLOG_LEVEL_INFO 2
-#define SPDLOG_LEVEL_WARN 3
-#define SPDLOG_LEVEL_ERROR 4
-#define SPDLOG_LEVEL_CRITICAL 5
-#define SPDLOG_LEVEL_OFF 6
+#define SPDLOG_LEVEL_TIMING 3
+#define SPDLOG_LEVEL_FUNNY 4
+#define SPDLOG_LEVEL_WARN 5
+#define SPDLOG_LEVEL_JOKER 6
+#define SPDLOG_LEVEL_GHOST 7
+#define SPDLOG_LEVEL_SUCCESS 8
+#define SPDLOG_LEVEL_ERROR 9
+#define SPDLOG_LEVEL_FINISH 10
+#define SPDLOG_LEVEL_CRITICAL 11
+#define SPDLOG_LEVEL_OFF 12
+
 
 #if !defined(SPDLOG_ACTIVE_LEVEL)
     #define SPDLOG_ACTIVE_LEVEL SPDLOG_LEVEL_INFO
@@ -246,34 +253,56 @@ enum level_enum : int {
     trace = SPDLOG_LEVEL_TRACE,
     debug = SPDLOG_LEVEL_DEBUG,
     info = SPDLOG_LEVEL_INFO,
+    timing = SPDLOG_LEVEL_TIMING,
+    funny = SPDLOG_LEVEL_FUNNY,
     warn = SPDLOG_LEVEL_WARN,
+    joker = SPDLOG_LEVEL_JOKER,
+    ghost = SPDLOG_LEVEL_GHOST,
+    success = SPDLOG_LEVEL_SUCCESS,
     err = SPDLOG_LEVEL_ERROR,
+    finish = SPDLOG_LEVEL_FINISH,
     critical = SPDLOG_LEVEL_CRITICAL,
     off = SPDLOG_LEVEL_OFF,
     n_levels
 };
 
-#define SPDLOG_LEVEL_NAME_TRACE spdlog::string_view_t("trace", 5)
-#define SPDLOG_LEVEL_NAME_DEBUG spdlog::string_view_t("debug", 5)
-#define SPDLOG_LEVEL_NAME_INFO spdlog::string_view_t("info", 4)
-#define SPDLOG_LEVEL_NAME_WARNING spdlog::string_view_t("warning", 7)
-#define SPDLOG_LEVEL_NAME_ERROR spdlog::string_view_t("error", 5)
-#define SPDLOG_LEVEL_NAME_CRITICAL spdlog::string_view_t("critical", 8)
+#define SPDLOG_LEVEL_NAME_TRACE spdlog::string_view_t("🐾", sizeof("🐾")-1)
+#define SPDLOG_LEVEL_NAME_DEBUG spdlog::string_view_t("🔧", sizeof("🔧")-1) // 🛠️ is kind of too dark in dark theme
+#define SPDLOG_LEVEL_NAME_INFO spdlog::string_view_t("💬", sizeof("💬")-1)
+#define SPDLOG_LEVEL_NAME_TIMING spdlog::string_view_t("⏰", sizeof("⏰")-1)
+#define SPDLOG_LEVEL_NAME_FUNNY spdlog::string_view_t("🤣", sizeof("🤣")-1)
+#define SPDLOG_LEVEL_NAME_WARNING spdlog::string_view_t("🤔", sizeof("🤔")-1) // ⚠️ will be rendered wrong! 
+#define SPDLOG_LEVEL_NAME_JOKER spdlog::string_view_t("🤡", sizeof("🤡")-1)
+#define SPDLOG_LEVEL_NAME_GHOST spdlog::string_view_t("👻", sizeof("👻")-1)
+#define SPDLOG_LEVEL_NAME_SUCCESS spdlog::string_view_t("🎉", sizeof("🎉")-1)
+#define SPDLOG_LEVEL_NAME_ERROR spdlog::string_view_t("🚨", sizeof("🚨")-1)
+#define SPDLOG_LEVEL_NAME_FINISH spdlog::string_view_t("✅", sizeof("✅")-1)
+#define SPDLOG_LEVEL_NAME_CRITICAL spdlog::string_view_t("❌", sizeof("❌")-1)
 #define SPDLOG_LEVEL_NAME_OFF spdlog::string_view_t("off", 3)
 
 #if !defined(SPDLOG_LEVEL_NAMES)
     #define SPDLOG_LEVEL_NAMES                                                                  \
         {                                                                                       \
-            SPDLOG_LEVEL_NAME_TRACE, SPDLOG_LEVEL_NAME_DEBUG, SPDLOG_LEVEL_NAME_INFO,           \
-                SPDLOG_LEVEL_NAME_WARNING, SPDLOG_LEVEL_NAME_ERROR, SPDLOG_LEVEL_NAME_CRITICAL, \
-                SPDLOG_LEVEL_NAME_OFF                                                           \
+            SPDLOG_LEVEL_NAME_TRACE, \
+            SPDLOG_LEVEL_NAME_DEBUG, \
+            SPDLOG_LEVEL_NAME_INFO,  \
+            SPDLOG_LEVEL_NAME_TIMING,  \
+            SPDLOG_LEVEL_NAME_FUNNY,  \
+            SPDLOG_LEVEL_NAME_WARNING, \
+            SPDLOG_LEVEL_NAME_JOKER, \
+            SPDLOG_LEVEL_NAME_GHOST, \
+            SPDLOG_LEVEL_NAME_SUCCESS, \
+            SPDLOG_LEVEL_NAME_ERROR, \
+            SPDLOG_LEVEL_NAME_FINISH, \
+            SPDLOG_LEVEL_NAME_CRITICAL, \
+            SPDLOG_LEVEL_NAME_OFF                                                           \
         }
 #endif
 
 #if !defined(SPDLOG_SHORT_LEVEL_NAMES)
 
     #define SPDLOG_SHORT_LEVEL_NAMES \
-        { "T", "D", "I", "W", "E", "C", "O" }
+        { "🐾", "🔧", "💬", "⏰", "🤣", "🤔", "🤡", "👻", "🎉", "🚨", "✅", "❌", "O" }
 #endif
 
 SPDLOG_API const string_view_t &to_string_view(spdlog::level::level_enum l) SPDLOG_NOEXCEPT;

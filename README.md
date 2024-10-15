@@ -1,3 +1,78 @@
+# spdlog-emoji !
+
+It's an emoji version of [spdlog](https://github.com/gabime/spdlog)! Plus some new levels of logging.
+
+## What's difference
+#### Why not enjoy some emojis!
+WHO WANTS A LOG LIKE:
+`[info] This is an info`
+BUT NOT:
+`[💬] This is an info`
+?
+
+#### (New) Log levels and emojis
+```
+TRACE     🐾
+DEBUG     🔧
+INFO      📢
+TIMING    ⏰
+FUNNY     🤣
+WARN      🤔  *
+JOKER     🤡
+GHOST     👻
+SUCCESS   🎉
+ERROR     🚨
+FINISH    ✅
+CRITICAL  ❌
+OFF O (yes, this is not an emoji since it's never used by users)
+```
+\* I tried to use ⚠️, but it will be rendered by some default fonts, such as Menlo on MacOS, and it looks like `⚠️`. Since it is 21th Century now, The last one is totally unacceptable.
+
+#### Usage
+Use it just like spdlog, and you have more choices:
+```
+some_logger->trace("This is Trace");
+some_logger->debug("This is Debug");
+some_logger->info("This is Info");
+some_logger->timing("This is Timing");
+some_logger->funny("This is Funny");
+some_logger->warn("This is Warn");
+some_logger->joker("This is Joker");
+some_logger->ghost("This is Ghost");
+some_logger->success("This is Success");
+some_logger->error("This is Error");
+some_logger->finish("This is Finish");
+some_logger->critical("This is Critical");
+```
+
+Here are what you got:
+
+```
+[2024-10-15 18:24:57.617] [some_logger_name] [🐾] This is Trace
+[2024-10-15 18:24:57.617] [some_logger_name] [🔧] This is Debug
+[2024-10-15 18:24:57.617] [some_logger_name] [💬] This is Info
+[2024-10-15 18:24:57.617] [some_logger_name] [⏰] This is Timing
+[2024-10-15 18:24:57.617] [some_logger_name] [🤣] This is Funny
+[2024-10-15 18:24:57.617] [some_logger_name] [🤔] This is Warn
+[2024-10-15 18:24:57.617] [some_logger_name] [🤡] This is Joker
+[2024-10-15 18:24:57.617] [some_logger_name] [👻] This is Ghost
+[2024-10-15 18:24:57.617] [some_logger_name] [🎉] This is Success
+[2024-10-15 18:24:57.617] [some_logger_name] [🚨] This is Error
+[2024-10-15 18:24:57.617] [some_logger_name] [✅] This is Finish
+[2024-10-15 18:24:57.617] [some_logger_name] [❌] This is Critical
+
+```
+
+
+Tips: If you are using logging format that truncates the log_level_name, be careful, since emojis don't have a uniform string length and your truncation could result in weird output.
+
+-----
+
+Thanks to spdlog for its clean and tidy design and implementation, making this change very easy.
+
+Following is the README of spdlog:
+
+-----
 # spdlog
 
 Very fast, header-only/compiled, C++ logging library. [![ci](https://github.com/gabime/spdlog/actions/workflows/ci.yml/badge.svg)](https://github.com/gabime/spdlog/actions/workflows/ci.yml)&nbsp; [![Build status](https://ci.appveyor.com/api/projects/status/d2jnxclg20vd0o50?svg=true&branch=v1.x)](https://ci.appveyor.com/project/gabime/spdlog) [![Release](https://img.shields.io/github/release/gabime/spdlog.svg)](https://github.com/gabime/spdlog/releases/latest)

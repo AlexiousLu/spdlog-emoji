@@ -169,13 +169,43 @@ inline void info(format_string_t<Args...> fmt, Args &&...args) {
 }
 
 template <typename... Args>
+inline void timing(format_string_t<Args...> fmt, Args &&...args) {
+    default_logger_raw()->timing(fmt, std::forward<Args>(args)...);
+}
+
+template <typename... Args>
+inline void funny(format_string_t<Args...> fmt, Args &&...args) {
+    default_logger_raw()->funny(fmt, std::forward<Args>(args)...);
+}
+
+template <typename... Args>
 inline void warn(format_string_t<Args...> fmt, Args &&...args) {
     default_logger_raw()->warn(fmt, std::forward<Args>(args)...);
 }
 
 template <typename... Args>
+inline void joker(format_string_t<Args...> fmt, Args &&...args) {
+    default_logger_raw()->joker(fmt, std::forward<Args>(args)...);
+}
+
+template <typename... Args>
+inline void ghost(format_string_t<Args...> fmt, Args &&...args) {
+    default_logger_raw()->ghost(fmt, std::forward<Args>(args)...);
+}
+
+template <typename... Args>
+inline void success(format_string_t<Args...> fmt, Args &&...args) {
+    default_logger_raw()->success(fmt, std::forward<Args>(args)...);
+}
+
+template <typename... Args>
 inline void error(format_string_t<Args...> fmt, Args &&...args) {
     default_logger_raw()->error(fmt, std::forward<Args>(args)...);
+}
+
+template <typename... Args>
+inline void finish(format_string_t<Args...> fmt, Args &&...args) {
+    default_logger_raw()->finish(fmt, std::forward<Args>(args)...);
 }
 
 template <typename... Args>
@@ -208,7 +238,7 @@ inline void log(level::level_enum lvl, wformat_string_t<Args...> fmt, Args &&...
 }
 
 template <typename... Args>
-inline void trace(wformat_string_t<Args...> fmt, Args &&...args) {
+inline void trace(format_string_t<Args...> fmt, Args &&...args) {
     default_logger_raw()->trace(fmt, std::forward<Args>(args)...);
 }
 
@@ -223,13 +253,43 @@ inline void info(wformat_string_t<Args...> fmt, Args &&...args) {
 }
 
 template <typename... Args>
+inline void timing(wformat_string_t<Args...> fmt, Args &&...args) {
+    default_logger_raw()->timing(fmt, std::forward<Args>(args)...);
+}
+
+template <typename... Args>
+inline void funny(wformat_string_t<Args...> fmt, Args &&...args) {
+    default_logger_raw()->funny(fmt, std::forward<Args>(args)...);
+}
+
+template <typename... Args>
 inline void warn(wformat_string_t<Args...> fmt, Args &&...args) {
     default_logger_raw()->warn(fmt, std::forward<Args>(args)...);
 }
 
 template <typename... Args>
+inline void joker(wformat_string_t<Args...> fmt, Args &&...args) {
+    default_logger_raw()->joker(fmt, std::forward<Args>(args)...);
+}
+
+template <typename... Args>
+inline void ghost(wformat_string_t<Args...> fmt, Args &&...args) {
+    default_logger_raw()->ghost(fmt, std::forward<Args>(args)...);
+}
+
+template <typename... Args>
+inline void success(wformat_string_t<Args...> fmt, Args &&...args) {
+    default_logger_raw()->success(fmt, std::forward<Args>(args)...);
+}
+
+template <typename... Args>
 inline void error(wformat_string_t<Args...> fmt, Args &&...args) {
     default_logger_raw()->error(fmt, std::forward<Args>(args)...);
+}
+
+template <typename... Args>
+inline void finish(wformat_string_t<Args...> fmt, Args &&...args) {
+    default_logger_raw()->finish(fmt, std::forward<Args>(args)...);
 }
 
 template <typename... Args>
@@ -254,13 +314,43 @@ inline void info(const T &msg) {
 }
 
 template <typename T>
+inline void timing(const T &msg) {
+    default_logger_raw()->timing(msg);
+}
+
+template <typename T>
+inline void funny(const T &msg) {
+    default_logger_raw()->funny(msg);
+}
+
+template <typename T>
 inline void warn(const T &msg) {
     default_logger_raw()->warn(msg);
 }
 
 template <typename T>
+inline void joker(const T &msg) {
+    default_logger_raw()->joker(msg);
+}
+
+template <typename T>
+inline void ghost(const T &msg) {
+    default_logger_raw()->ghost(msg);
+}
+
+template <typename T>
+inline void success(const T &msg) {
+    default_logger_raw()->success(msg);
+}
+
+template <typename T>
 inline void error(const T &msg) {
     default_logger_raw()->error(msg);
+}
+
+template <typename T>
+inline void finish(const T &msg) {
+    default_logger_raw()->finish(msg);
 }
 
 template <typename T>
@@ -318,6 +408,24 @@ inline void critical(const T &msg) {
     #define SPDLOG_INFO(...) (void)0
 #endif
 
+#if SPDLOG_ACTIVE_LEVEL <= SPDLOG_LEVEL_TIMING
+    #define SPDLOG_LOGGER_TIMING(logger, ...) \
+        SPDLOG_LOGGER_CALL(logger, spdlog::level::timing, __VA_ARGS__)
+    #define SPDLOG_TIMING(...) SPDLOG_LOGGER_TIMING(spdlog::default_logger_raw(), __VA_ARGS__)
+#else
+    #define SPDLOG_LOGGER_TIMING(logger, ...) (void)0
+    #define SPDLOG_TIMING(...) (void)0
+#endif
+
+#if SPDLOG_ACTIVE_LEVEL <= SPDLOG_LEVEL_FUNNY
+    #define SPDLOG_LOGGER_FUNNY(logger, ...) \
+        SPDLOG_LOGGER_CALL(logger, spdlog::level::funny, __VA_ARGS__)
+    #define SPDLOG_FUNNY(...) SPDLOG_LOGGER_FUNNY(spdlog::default_logger_raw(), __VA_ARGS__)
+#else
+    #define SPDLOG_LOGGER_FUNNY(logger, ...) (void)0
+    #define SPDLOG_FUNNY(...) (void)0
+#endif
+
 #if SPDLOG_ACTIVE_LEVEL <= SPDLOG_LEVEL_WARN
     #define SPDLOG_LOGGER_WARN(logger, ...) \
         SPDLOG_LOGGER_CALL(logger, spdlog::level::warn, __VA_ARGS__)
@@ -327,6 +435,33 @@ inline void critical(const T &msg) {
     #define SPDLOG_WARN(...) (void)0
 #endif
 
+#if SPDLOG_ACTIVE_LEVEL <= SPDLOG_LEVEL_JOKER
+    #define SPDLOG_LOGGER_JOKER(logger, ...) \
+        SPDLOG_LOGGER_CALL(logger, spdlog::level::joker, __VA_ARGS__)
+    #define SPDLOG_JOKER(...) SPDLOG_LOGGER_JOKER(spdlog::default_logger_raw(), __VA_ARGS__)
+#else
+    #define SPDLOG_LOGGER_JOKER(logger, ...) (void)0
+    #define SPDLOG_JOKER(...) (void)0
+#endif
+
+#if SPDLOG_ACTIVE_LEVEL <= SPDLOG_LEVEL_GHOST
+    #define SPDLOG_LOGGER_GHOST(logger, ...) \
+        SPDLOG_LOGGER_CALL(logger, spdlog::level::ghost, __VA_ARGS__)
+    #define SPDLOG_GHOST(...) SPDLOG_LOGGER_GHOST(spdlog::default_logger_raw(), __VA_ARGS__)
+#else
+    #define SPDLOG_LOGGER_GHOST(logger, ...) (void)0
+    #define SPDLOG_GHOST(...) (void)0
+#endif
+
+#if SPDLOG_ACTIVE_LEVEL <= SPDLOG_LEVEL_SUCCESS
+    #define SPDLOG_LOGGER_SUCCESS(logger, ...) \
+        SPDLOG_LOGGER_CALL(logger, spdlog::level::success, __VA_ARGS__)
+    #define SPDLOG_SUCCESS(...) SPDLOG_LOGGER_SUCCESS(spdlog::default_logger_raw(), __VA_ARGS__)
+#else
+    #define SPDLOG_LOGGER_SUCCESS(logger, ...) (void)0
+    #define SPDLOG_SUCCESS(...) (void)0
+#endif
+
 #if SPDLOG_ACTIVE_LEVEL <= SPDLOG_LEVEL_ERROR
     #define SPDLOG_LOGGER_ERROR(logger, ...) \
         SPDLOG_LOGGER_CALL(logger, spdlog::level::err, __VA_ARGS__)
@@ -334,6 +469,15 @@ inline void critical(const T &msg) {
 #else
     #define SPDLOG_LOGGER_ERROR(logger, ...) (void)0
     #define SPDLOG_ERROR(...) (void)0
+#endif
+
+#if SPDLOG_ACTIVE_LEVEL <= SPDLOG_LEVEL_FINISH
+    #define SPDLOG_LOGGER_FINISH(logger, ...) \
+        SPDLOG_LOGGER_CALL(logger, spdlog::level::finish, __VA_ARGS__)
+    #define SPDLOG_FINISH(...) SPDLOG_LOGGER_FINISH(spdlog::default_logger_raw(), __VA_ARGS__)
+#else
+    #define SPDLOG_LOGGER_FINISH(logger, ...) (void)0
+    #define SPDLOG_FINISH(...) (void)0
 #endif
 
 #if SPDLOG_ACTIVE_LEVEL <= SPDLOG_LEVEL_CRITICAL
